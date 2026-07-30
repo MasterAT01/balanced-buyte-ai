@@ -1,0 +1,6 @@
+{
+  "name": "Balanced Buyte",
+  "description": "Your 60-Second Food & Drink Decision Agent with Smart Kitchen, Decision Confidence, and Balanced Buyte Engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

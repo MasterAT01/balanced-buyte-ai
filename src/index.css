@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ink:        #0B2E22;
+    --bottle:     #114B36;
+    --bottle-br:  #1C8354;
+    --mist:       #EAF3EC;
+    --mist-2:     #F5F9F6;
+    --white:      #FFFFFF;
+    --amber:      #C98A2C;
+    --clay:       #B23B2E;
+    --slate:      #5B7A6E;
+
+    --font-display: 'Poppins', 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+
+    --section-gap: 28px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: radial-gradient(120% 120% at 50% 0%, #0F4C36 0%, #0B3A29 45%, #082C1F 100%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-custom {
+  font-family: var(--font-mono);
+}
+
+.font-body-custom {
+  font-family: var(--font-body);
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 1.2s linear infinite;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
