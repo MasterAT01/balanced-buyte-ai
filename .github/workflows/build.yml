@@ -20,8 +20,13 @@ jobs:
       - run: bun install
       - run: bun run build
 
+      # Clear old files in public_html
+      - run: rm -rf public_html/*
+
+      # Copy new build output into public_html
+      - run: cp -r dist/* public_html/
+
       - uses: actions/upload-artifact@v4
         with:
           name: balanced-buyte-dist
           path: dist
-
