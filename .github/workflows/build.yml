@@ -1,13 +1,12 @@
-name: Build Balanced Buyte AI
+name: Deploy Balanced Buyte AI
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,13 +19,20 @@ jobs:
       - run: bun install
       - run: bun run build
 
-      # Clear old files in public_html
-      - run: rm -rf public_html/*
+      # Move build output into a temporary folder
+      - run: |
+          rm -rf deploy
+          mkdir deploy
+          cp -r dist/* deploy/
 
-      # Copy new build output into public_html
-      - run: cp -r dist/* public_html/
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: balanced-buyte-dist
-          path: dist
+      # Push build output to deploy branch
+      - name: Deploy to branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan deploy
+          git reset
+          cp -r deploy/* .
+          git add .
+          git commit -m "Deploy build from main"
+          git push --force origin deploy
